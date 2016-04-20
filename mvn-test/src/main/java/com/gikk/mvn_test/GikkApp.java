@@ -12,6 +12,6 @@ public class GikkApp
     }
     
     public static String getMessage(){
-    	return "Hello World";
+    	return "Hello World 2";
     }
 }
