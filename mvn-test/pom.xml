@@ -22,9 +22,7 @@
 	</properties>
 	
  <build>
-    <plugins>
-    
-	
+    <plugins> 	
       
 	<plugin>  <!-- Create sources.jar -->
 		<groupId>org.apache.maven.plugins</groupId>
