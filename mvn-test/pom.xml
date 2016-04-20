@@ -4,21 +4,23 @@
 
   <groupId>com.gikk</groupId>
   <artifactId>mvn-test</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <packaging>jar</packaging>
 
   <name>mvn-test</name>
   <url>http://maven.apache.org</url>
+  
+  <repositories>
+  	<repository>
+  		<id>jitpack.io</id>
+  		<url>https://jitpack.io</url>
+  	</repository>
+  </repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<github.global.server>github</github.global.server>
 	</properties>
-  
-  	<scm>
-  		<connection>scm:git:git@github-ld:gikkman/mvn-test.git</connection>
-  		<tag>HEAD</tag>
-  	</scm>
   	
 	<distributionManagement>
 		<repository>
@@ -31,32 +33,46 @@
 	    </snapshotRepository>
 	</distributionManagement>
 	
-	<build>
-	 <plugins>	    
-	    <plugin>
-            <groupId>com.github.github</groupId>
-            <artifactId>site-maven-plugin</artifactId>
-            <version>0.11</version>
-            <configuration>
-          	  	<outputDirectory>${project.build.directory}/staging/</outputDirectory>
-                
-                <message>Maven artifacts for version ${project.version}</message>  <!-- git commit message -->
-                <branch>refs/tags/${project.version}</branch>                       <!-- remote branch name -->
-                
-                <includes><include>**/*</include></includes>
-                <repositoryOwner>Gikkman</repositoryOwner>     <!-- github username  -->
-				<repositoryName>mvn-test</repositoryName>      <!-- github repo name -->
-            </configuration>
-            <executions>
-              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
-              <execution>
-                <goals><goal>site</goal></goals>
-                <phase>deploy</phase>
-              </execution>
-            </executions>
-        </plugin>
-	 </plugins>
-	</build>
+ <build>
+    <plugins>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration> <!-- Compile java 7 compatible bytecode -->
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>  <!-- Create sources.jar -->
+            <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+      </plugin>
+            
+      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+      </plugin>
+    </plugins>
+  </build>
  
 
   <dependencies>
