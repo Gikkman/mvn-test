@@ -4,7 +4,7 @@
 
 	 <groupId>com.gikk</groupId>
 	 <artifactId>mvn-test</artifactId>
-	 <version>0.0.2</version>
+	 <version>0.1</version>
 	 <packaging>jar</packaging>
 	
 	 <name>mvn-test</name>
